@@ -36,7 +36,7 @@ const Hero = () => {
         initial={{opacity:0, y:100}}
         animate={{opacity:1, y:0}}
         transition={{delay:1.1, duration:0.5}} 
-        className="mt-4 max-w-xl ml-[4.5rem] max-md:ml-[0.5rem] max-md:text-[0.9rem] text-gray-400">
+        className="mt-4 max-w-xl ml-[4.5rem] max-md:ml-[0.5rem] max-md:text-[0.9rem] text-gray-400  max-sm:pl-3 max-sm:pr-3">
           My Portfolio showcases my expertise in Full Stack Mern Development, highlighting my skills in MonogoDB, Express.js. React, and Node.js. I have built many projects that showcases my experience in building scalable and efficient applications. I have integrated Three.js creating 3D representaion of my skills. Through this portfolio, I aim to present a compeling snapshot of my abilities, creativity, and passion for modern Web Development.
         </motion.p>
 
