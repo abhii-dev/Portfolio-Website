@@ -40,16 +40,16 @@ const SkillSection = () => {
                 setLayout("grid");
                 setColumns(3);
                 setSpacing(8);
-                setXOffset(4); // Left margin for mobile
+                setXOffset(4); 
             } else if (window.innerWidth < 1024) {
                 setLayout("row");
                 setColumns(3);
                 setXOffset(1.2);
-                setSpacing(10); // Adjust spacing for tablets
+                setSpacing(10); 
             } else {
                 setLayout("row");
                 setXOffset(-2);
-                setSpacing(13); // Default for large screens
+                setSpacing(13); 
             }
         };
 

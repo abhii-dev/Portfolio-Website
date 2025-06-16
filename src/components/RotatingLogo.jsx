@@ -14,11 +14,11 @@ const RotatingLogo = ({ textureUrl, position, link }) => {
     useEffect(() => {
         const updateSize = () => {
             if (window.innerWidth < 640) {
-                setSize(1.5); // Small size for mobile
+                setSize(1.5); 
             } else if (window.innerWidth < 1024) {
-                setSize(1.5); // Slightly smaller size for tablets
+                setSize(1.5); 
             } else {
-                setSize(2); // Default for larger screens
+                setSize(2); 
             }
         };
 
@@ -27,7 +27,7 @@ const RotatingLogo = ({ textureUrl, position, link }) => {
         return () => window.removeEventListener("resize", updateSize);
     }, []);
 
-    // Smoothly interpolate rotation using lerp and return to default position
+    
     useFrame(() => {
         if (groupRef.current) {
             groupRef.current.rotation.x = MathUtils.lerp(groupRef.current.rotation.x, targetRotation.current.x, 0.1);
@@ -42,7 +42,7 @@ const RotatingLogo = ({ textureUrl, position, link }) => {
             scale={hovered ? [size * 1.05, size * 1.05, size * 1.05] : [size, size, size]}
             onClick={() => {
                 if (link) {
-                    window.open(link, "_blank"); // Opens in a new tab
+                    window.open(link, "_blank"); 
                 }
             }}
             onPointerOver={(e) => {
@@ -51,7 +51,7 @@ const RotatingLogo = ({ textureUrl, position, link }) => {
             }}
             onPointerOut={() => {
                 setHovered(false);
-                targetRotation.current = { x: 0, y: 0 }; // Reset to normal position
+                targetRotation.current = { x: 0, y: 0 }; 
             }}
             onPointerMove={(e) => {
                 if (hovered) {
@@ -61,13 +61,13 @@ const RotatingLogo = ({ textureUrl, position, link }) => {
                 }
             }}
         >
-            {/* White Circular Background */}
+            
             <mesh position={[0, 0, -0.1]}>
                 <circleGeometry args={[size * 1, 60]} />
                 <meshStandardMaterial color="#a855f7" side={DoubleSide} />
             </mesh>
 
-            {/* Logo Image */}
+    
             <mesh>
                 <planeGeometry args={[size, size]} />
                 <meshStandardMaterial
