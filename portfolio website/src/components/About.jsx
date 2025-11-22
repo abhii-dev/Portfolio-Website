@@ -13,12 +13,12 @@ const About = () => {
     <div
       id="about"
       ref={ref}
-      className="relative py-20 text-white overflow-hidden"
+      className="relative py-20 pt-0 text-white overflow-hidden"
     >
       {/* Background glows */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute -top-24 left-0 h-64 w-64 rounded-full bg-purple-600/30 blur-3xl" />
-        <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-indigo-500/30 blur-3xl" />
+        <div className="absolute -top-24 left-0 h-64 w-64 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full blur-3xl" />
       </div>
 
       <div className="container mx-auto px-4">

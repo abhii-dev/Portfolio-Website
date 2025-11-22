@@ -4,6 +4,7 @@ import { IoMdClose } from "react-icons/io";
 import { motion } from "framer-motion"; // keep consistent with rest of app
 import { Link } from "react-scroll";
 import resume from "../assets/resume.pdf";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const Navbar = () => {
   const variants = {
@@ -66,14 +67,36 @@ const Navbar = () => {
           </ul>
 
           {/* Resume button */}
+
+                <div className="flex items-center gap-4">
+          {/* GitHub */}
           <a
-            href={resume}
+            href="https://github.com/abhii-dev"
             target="_blank"
             rel="noopener noreferrer"
-            className="md:text-sm lg:text-base text-white rounded-full px-4 py-2 font-medium bg-gradient-to-r from-purple-600 via-fuchsia-600 to-indigo-600 shadow-[0_10px_30px_rgba(0,0,0,0.7)] hover:shadow-purple-500/60 hover:-translate-y-0.5 transition-all duration-300"
+            className="flex items-center justify-center text-white rounded-full 
+            border border-purple-500/60 px-3 py-2 text-xl
+            hover:bg-purple-500/10 hover:border-purple-400 
+            transition-all duration-300 hover:-translate-y-0.5"
           >
-            Download Resume
+            <FaGithub />
           </a>
+
+          {/* LinkedIn */}
+          <a
+            href="https://www.linkedin.com/in/abhishek2504"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center text-white rounded-full 
+            border border-purple-500/60 px-3 py-2 text-xl
+            hover:bg-purple-500/10 hover:border-purple-400 
+            transition-all duration-300 hover:-translate-y-0.5"
+          >
+            <FaLinkedin />
+          </a>
+        </div>
+                  
+  
         </div>
       </motion.div>
 

@@ -29,8 +29,8 @@ const Services = () => {
     <div className="relative text-white py-20 overflow-hidden">
       {/* Background glow elements */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute -top-32 -left-10 h-64 w-64 rounded-full bg-purple-600/30 blur-3xl" />
-        <div className="absolute bottom-0 right-0 h-72 w-72 rounded-full bg-indigo-500/30 blur-3xl" />
+        <div className="absolute -top-32 -left-10 h-64 w-64 rounded-full  blur-3xl" />
+        <div className="absolute bottom-0 right-0 h-72 w-72 rounded-full  blur-3xl" />
       </div>
 
       <div ref={ref} className="container mx-auto px-4">
