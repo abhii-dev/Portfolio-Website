@@ -28,7 +28,7 @@ const Education = () => {
       name: "Prism PU Science College",
       duration: "Secondary Schooling, 1st & 2nd PU",
       location: "Dharwad",
-      link: "https://www.justdial.com/Dharwad/Shanti-Sadan-School-Navodayanagar/0836PX836-X836-120709131924-E8P8_BZDET",
+      link: "http://prismtimmanagoudarcollege.com/",
     },
     {
       id: 4,

@@ -1,60 +1,93 @@
-import React, { useState, useEffect } from "react";
-import { Canvas } from "@react-three/fiber";
-import RotatingLogo from "./RotatingLogo";
-import htmllogo from "../assets/html.png";
-import csslogo from "../assets/css.png";
+import React, { useState } from "react";
 import jslogo from "../assets/javascript.png";
 import reactlogo from "../assets/react.png";
 import expresslogo from "../assets/express.png";
 import mongologo from "../assets/mongo.png";
 import nodejslogo from "../assets/nodejs.png";
+import javalogo from "../assets/java.png";   // make sure these exist
+import sqllogo from "../assets/sql.png";     // or rename imports
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
+const tabs = [
+  {
+    id: "frontend",
+    label: "Frontend",
+    tag: "React · JavaScript",
+    description:
+      "I build responsive, interactive UIs with React and modern JavaScript, focusing on clean components, state management, and smooth UX.",
+    points: [
+      "SPA development with React, hooks, and props",
+      "Reusable component patterns and layout systems",
+      "State management with hooks and lifting state up",
+    ],
+    logos: [
+      { src: jslogo, alt: "JavaScript" },
+      { src: reactlogo, alt: "React" },
+    ],
+  },
+  {
+    id: "backend",
+    label: "Backend",
+    tag: "Node.js · Express.js",
+    description:
+      "I design REST APIs, work with middleware, and implement auth and routing using Node.js and Express.",
+    points: [
+      "RESTful API design and routing",
+      "Auth, middleware, and error handling",
+      "Working with JSON, JWT, and request validation",
+    ],
+    logos: [
+      { src: nodejslogo, alt: "Node.js" },
+      { src: expresslogo, alt: "Express" },
+    ],
+  },
+  {
+    id: "database",
+    label: "Database",
+    tag: "MongoDB · SQL",
+    description:
+      "Comfortable with both NoSQL and relational databases — from schema design to querying and performance considerations.",
+    points: [
+      "Designing collections / tables for real projects",
+      "Writing queries, filters, and aggregations",
+      "Relating backend logic with database models",
+    ],
+    logos: [
+      { src: mongologo, alt: "MongoDB" },
+      { src: sqllogo, alt: "SQL" },
+    ],
+  },
+  {
+    id: "core",
+    label: "Core Java & CS",
+    tag: "Core Java · OOP · DSA",
+    description:
+      "I use Core Java to strengthen computer science fundamentals, focusing on OOP, data structures, and problem solving.",
+    points: [
+      "Object-oriented design (classes, interfaces, inheritance)",
+      "Working with common data structures and algorithms",
+      "Writing clean, structured, and maintainable code",
+    ],
+    logos: [{ src: javalogo, alt: "Core Java" }],
+  },
+];
+
 const SkillSection = () => {
+  const [activeTab, setActiveTab] = useState("frontend");
+
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.2,
   });
 
-  const logos = [
-    { texture: htmllogo, link: "https://developer.mozilla.org/en-US/docs/Web/HTML" },
-    { texture: csslogo, link: "https://developer.mozilla.org/en-US/docs/Web/CSS" },
-    { texture: jslogo, link: "https://developer.mozilla.org/en-US/docs/Web/JavaScript" },
-    { texture: reactlogo, link: "https://react.dev/" },
-    { texture: expresslogo, link: "https://expressjs.com/" },
-    { texture: mongologo, link: "https://www.mongodb.com/" },
-    { texture: nodejslogo, link: "https://nodejs.org/en" },
-  ];
+  const fadeUp = (delay = 0) => ({
+    initial: { opacity: 0, y: 40 },
+    animate: inView ? { opacity: 1, y: 0 } : {},
+    transition: { delay, duration: 0.5 },
+  });
 
-  const [layout, setLayout] = useState("row");
-  const [columns, setColumns] = useState(3);
-  const [xOffset, setXOffset] = useState(0);
-  const [spacing, setSpacing] = useState(13);
-
-  useEffect(() => {
-    const updateLayout = () => {
-      if (window.innerWidth < 640) {
-        setLayout("grid");
-        setColumns(3);
-        setSpacing(8);
-        setXOffset(4);
-      } else if (window.innerWidth < 1024) {
-        setLayout("row");
-        setColumns(3);
-        setXOffset(1.2);
-        setSpacing(10);
-      } else {
-        setLayout("row");
-        setXOffset(-2);
-        setSpacing(13);
-      }
-    };
-
-    updateLayout();
-    window.addEventListener("resize", updateLayout);
-    return () => window.removeEventListener("resize", updateLayout);
-  }, []);
+  const current = tabs.find((t) => t.id === activeTab);
 
   return (
     <div
@@ -65,86 +98,127 @@ const SkillSection = () => {
       {/* Background glows */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute -top-24 left-0 h-64 w-64 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-0 h-72 w-72 rounded-ful blur-3xl" />
+        <div className="absolute bottom-0 right-0 h-72 w-72 rounded-full blur-3xl" />
       </div>
 
-      {/* Heading + subtitle */}
+      {/* Heading */}
       <motion.h2
-        initial={{ opacity: 0, y: 60 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ delay: 0.2, duration: 0.5 }}
-        className="text-3xl sm:text-4xl font-bold underline mb-3 text-center max-sm:text-2xl"
+        {...fadeUp(0.2)}
+        className="text-3xl sm:text-4xl font-bold underline mb-3 text-center"
       >
         My Skills
       </motion.h2>
 
       <motion.p
-        initial={{ opacity: 0, y: 60 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ delay: 0.3, duration: 0.5 }}
+        {...fadeUp(0.3)}
         className="text-gray-300 text-center max-w-xl mx-auto text-sm sm:text-base mb-8 px-4"
       >
-        A visual representation of my core tech stack using interactive 3D
-        elements — combining frontend, backend, and database technologies.
+        A full-stack skillset built around React, Node.js, databases, and strong
+        Core Java & SQL fundamentals.
       </motion.p>
 
-      {/* Small pill row to match other sections */}
+      {/* Small pill row */}
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ delay: 0.35, duration: 0.5 }}
-        className="flex flex-wrap justify-center gap-2 mb-8 px-4"
+        {...fadeUp(0.35)}
+        className="flex flex-wrap justify-center gap-2 mb-10 px-4"
       >
         <span className="rounded-full border border-purple-400/60 bg-purple-500/10 px-3 py-1 text-xs sm:text-sm text-purple-100">
-          Frontend: HTML, CSS, JavaScript, React
+          React · JavaScript
         </span>
         <span className="rounded-full border border-indigo-400/60 bg-indigo-500/10 px-3 py-1 text-xs sm:text-sm text-indigo-100">
-          Backend: Node.js, Express.js
+          Node.js · Express.js
         </span>
         <span className="rounded-full border border-emerald-400/60 bg-emerald-500/10 px-3 py-1 text-xs sm:text-sm text-emerald-100">
-          Database: MongoDB
+          MongoDB · SQL
+        </span>
+        <span className="rounded-full border border-pink-400/60 bg-pink-500/10 px-3 py-1 text-xs sm:text-sm text-pink-100">
+          Core Java · OOP · DSA
         </span>
       </motion.div>
 
-      {/* Canvas for 3D logos */}
+      {/* Tabs layout */}
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ delay: 0.4, duration: 0.6 }}
-        className="w-full flex justify-center"
+        {...fadeUp(0.4)}
+        className="w-full max-w-5xl px-4 grid gap-6 md:grid-cols-[0.9fr,1.6fr] items-start"
       >
-        <Canvas
-          camera={{ position: [0, 0, 10] }}
-          className="h-[280px] sm:h-[380px] md:h-[420px]"
+        {/* Left side: Tabs */}
+        <div className="rounded-2xl border border-white/10 bg-slate-950/70 backdrop-blur-xl p-3 sm:p-4">
+          <p className="text-xs text-gray-400 mb-3 px-1">
+            Select a category to see how I work in that area.
+          </p>
+          <div className="flex md:flex-col gap-2">
+            {tabs.map((tab) => {
+              const isActive = tab.id === activeTab;
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`group flex-1 md:flex-none text-left rounded-xl border px-3 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm transition-all ${
+                    isActive
+                      ? "border-purple-400/70 bg-purple-500/15 shadow-[0_0_25px_-10px_rgba(168,85,247,0.8)]"
+                      : "border-white/10 bg-white/5 hover:border-purple-300/50 hover:bg-purple-500/5"
+                  }`}
+                >
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="font-medium">{tab.label}</span>
+                    <span className="text-[10px] text-gray-400 group-hover:text-purple-200 line-clamp-1">
+                      {tab.tag}
+                    </span>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Right side: Active content */}
+        <motion.div
+          key={current.id}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.35 }}
+          className="rounded-2xl border border-white/10 bg-slate-950/80 backdrop-blur-xl p-5 sm:p-6 shadow-[0_0_40px_-18px_rgba(59,130,246,0.9)]"
         >
-          <ambientLight intensity={0.5} />
-          {logos.map((logo, index) => {
-            let position;
-            if (layout === "row") {
-              position = [
-                index * spacing - ((logos.length - 1) * spacing) / 2 + xOffset,
-                -1.5,
-                0,
-              ];
-            } else {
-              const row = Math.floor(index / columns);
-              const col = index % columns;
-              position = [
-                col * spacing - (columns * spacing) / 2 + xOffset,
-                -row * spacing + 3,
-                0,
-              ];
-            }
-            return (
-              <RotatingLogo
-                key={index}
-                textureUrl={logo.texture}
-                position={position}
-                link={logo.link}
-              />
-            );
-          })}
-        </Canvas>
+          <div className="flex items-center justify-between gap-3 mb-3">
+            <h3 className="text-lg sm:text-xl font-semibold">
+              {current.label}
+            </h3>
+            <span className="text-[11px] px-2 py-1 rounded-full bg-white/5 border border-white/15 text-gray-200">
+              {current.tag}
+            </span>
+          </div>
+
+          <p className="text-xs sm:text-sm text-gray-300 mb-4">
+            {current.description}
+          </p>
+
+          <ul className="space-y-2.5 mb-5">
+            {current.points.map((point, idx) => (
+              <li
+                key={idx}
+                className="flex items-start gap-2 text-xs sm:text-sm text-gray-200"
+              >
+                <span className="mt-[5px] h-1.5 w-1.5 rounded-full bg-purple-400" />
+                <span>{point}</span>
+              </li>
+            ))}
+          </ul>
+
+          <div className="flex flex-wrap items-center gap-4">
+            {current.logos.map((logo) => (
+              <div
+                key={logo.alt}
+                className="h-10 w-10 sm:h-11 sm:w-11 rounded-xl bg-slate-900/80 flex items-center justify-center border border-white/10"
+              >
+                <img
+                  src={logo.src}
+                  alt={logo.alt}
+                  className="h-7 w-7 object-contain"
+                />
+              </div>
+            ))}
+          </div>
+        </motion.div>
       </motion.div>
     </div>
   );

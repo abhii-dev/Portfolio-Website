@@ -229,7 +229,7 @@ const Contact = () => {
         className="text-gray-400 flex items-center justify-center mt-8 mb-4 text-xs sm:text-sm"
       >
         <FaRegCopyright className="mr-2 text-purple-500" />
-        2024 <span className="text-purple-500 mx-1">Abhishek G</span> All
+        2025 <span className="text-purple-500 mx-1">Abhishek G</span> All
         rights reserved.
       </motion.p>
     </div>

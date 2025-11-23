@@ -7,17 +7,17 @@ import resume from "../assets/resume.pdf";
 
 const Hero = () => {
   return (
-    <div className="relative bg-[#05040b] text-white pt-24 pb-20 overflow-hidden">
+    <div className="relative text-white pt-24 pb-20 overflow-hidden">
       {/* Dark Gradient Overlay */}
       <div className="pointer-events-none absolute inset-0 -z-20">
-        <div className="absolute inset-0 bg-gradient-to-b from-purple-900/40 via-black to-black" />
+        <div className="absolute inset-0" />
       </div>
 
       {/* Background Glows */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute -top-32 left-1/2 -translate-x-1/2 h-72 w-72 rounded-full bg-purple-600/30 blur-3xl" />
-        <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-purple-700/20 blur-3xl" />
-        <div className="absolute bottom-10 left-10 h-52 w-52 rounded-full bg-indigo-500/20 blur-3xl" />
+        <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full  blur-3xl" />
+        <div className="absolute bottom-10 left-10 h-52 w-52 rounded-full blur-3xl" />
       </div>
 
       <div className="container mx-auto px-4 text-center">
