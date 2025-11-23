@@ -146,20 +146,22 @@ const SkillSection = () => {
           <p className="text-xs text-gray-400 mb-3 px-1">
             Select a category to see how I work in that area.
           </p>
-          <div className="flex md:flex-col gap-2">
+
+          {/* 2x2 grid on small screens, 1 column on md+ */}
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-2 md:grid-cols-1">
             {tabs.map((tab) => {
               const isActive = tab.id === activeTab;
               return (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`group flex-1 md:flex-none text-left rounded-xl border px-3 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm transition-all ${
+                  className={`group text-left rounded-xl border px-3 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm transition-all ${
                     isActive
                       ? "border-purple-400/70 bg-purple-500/15 shadow-[0_0_25px_-10px_rgba(168,85,247,0.8)]"
                       : "border-white/10 bg-white/5 hover:border-purple-300/50 hover:bg-purple-500/5"
                   }`}
                 >
-                  <div className="flex items-center justify-between gap-2">
+                  <div className="flex flex-col gap-1">
                     <span className="font-medium">{tab.label}</span>
                     <span className="text-[10px] text-gray-400 group-hover:text-purple-200 line-clamp-1">
                       {tab.tag}

@@ -71,110 +71,60 @@ const Education = () => {
         and technical growth.
       </motion.p>
 
-      {/* Timeline wrapper */}
-      <div className="relative flex flex-col items-center w-full mt-6">
-        {/* Center vertical line */}
-        <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-[2px] bg-gradient-to-b from-purple-400 via-gray-600 to-indigo-400 opacity-70" />
+      {/* Left-aligned timeline */}
+      <div className="relative max-w-3xl mx-auto mt-6">
+        {/* Vertical line */}
+        <div className="absolute left-4 top-0 bottom-0 w-[2px] bg-gradient-to-b from-purple-400 via-gray-600 to-indigo-400 opacity-70" />
 
-        {educompleted.map((edu, index) => {
-          const isLeft = index % 2 === 0;
-
-          return (
-            <div
+        <div className="space-y-8 pl-10">
+          {educompleted.map((edu, index) => (
+            <motion.div
               key={edu.id}
-              className="relative flex w-full items-center mb-10 justify-center"
+              initial={{ opacity: 0, x: -40 }}
+              animate={inView ? { opacity: 1, x: 0 } : {}}
+              transition={{ delay: 0.2 + index * 0.15, duration: 0.5 }}
+              className="relative flex items-start gap-4"
             >
-              {/* Side card */}
-              {isLeft && (
-                <motion.div
-                  initial={{ opacity: 0, x: -80 }}
-                  animate={inView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ delay: 0.2 + index * 0.15, duration: 0.5 }}
-                  className="w-[50%] pr-8 max-sm:w-[100%] max-lg:w-[80%] max-sm:pr-0"
-                >
-                  <div className="bg-[#090717]/80 border border-white/10 backdrop-blur-xl p-5 rounded-2xl shadow-[0_18px_45px_rgba(0,0,0,0.7)] w-full text-right hover:shadow-purple-500/50 hover:-translate-y-1 transition-all duration-300">
-                    <h3 className="text-purple-300 text-sm font-semibold sm:text-xl">
-                      {edu.name}
-                    </h3>
-                    <h2 className="text-gray-300 text-xs sm:text-sm mt-1">
-                      {edu.duration}
-                    </h2>
-                    <p className="text-indigo-300 text-xs sm:text-sm mt-1">
-                      {edu.location}
-                    </p>
-                    <a
-                      href={edu.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <motion.button
-                        className="mt-3 px-4 py-2 rounded-full text-xs sm:text-sm overflow-hidden border border-transparent text-white bg-gradient-to-r from-purple-600 via-fuchsia-600 to-indigo-600 shadow-[0_10px_25px_rgba(0,0,0,0.7)] hover:shadow-purple-500/60 hover:-translate-y-0.5 transition-all duration-300"
-                        initial={{ boxShadow: "0 0 8px #CD1C18" }}
-                        animate={{
-                          boxShadow: ["0 0 8px #CD1C18", "0 0 10px #4B0082"],
-                        }}
-                        transition={{
-                          duration: 1.5,
-                          repeat: Infinity,
-                          repeatType: "reverse",
-                        }}
-                      >
-                        Visit
-                      </motion.button>
-                    </a>
-                  </div>
-                </motion.div>
-              )}
+              {/* Dot */}
+              <div className="absolute -left-6 mt-2 h-4 w-4 rounded-full bg-gradient-to-br from-purple-400 to-indigo-400 border border-white/60 shadow-[0_0_18px_rgba(168,85,247,0.8)]" />
 
-              {/* Center dot */}
-              <div className="relative z-10 flex flex-col items-center">
-                <div className="h-4 w-4 rounded-full bg-gradient-to-br from-purple-400 to-indigo-400 border border-white/60 shadow-[0_0_18px_rgba(168,85,247,0.8)]" />
+              {/* Card */}
+              <div className="w-full bg-[#090717]/80 border border-white/10 backdrop-blur-xl p-5 rounded-2xl shadow-[0_18px_45px_rgba(0,0,0,0.7)] hover:shadow-purple-500/50 hover:-translate-y-1 transition-all duration-300">
+                <div className="flex items-center justify-between gap-2 mb-1">
+                  <h3 className="text-purple-300 text-sm font-semibold sm:text-xl">
+                    {edu.name}
+                  </h3>
+                </div>
+                <h2 className="text-gray-300 text-xs sm:text-sm mt-1">
+                  {edu.duration}
+                </h2>
+                <p className="text-indigo-300 text-xs sm:text-sm mt-1">
+                  {edu.location}
+                </p>
+                <a
+                  href={edu.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <motion.button
+                    className="mt-3 px-4 py-2 rounded-full text-xs sm:text-sm overflow-hidden border border-transparent text-white bg-gradient-to-r from-purple-600 via-fuchsia-600 to-indigo-600 shadow-[0_10px_25px_rgba(0,0,0,0.7)] hover:shadow-purple-500/60 hover:-translate-y-0.5 transition-all duration-300"
+                    initial={{ boxShadow: "0 0 8px #CD1C18" }}
+                    animate={{
+                      boxShadow: ["0 0 8px #CD1C18", "0 0 10px #4B0082"],
+                    }}
+                    transition={{
+                      duration: 1.5,
+                      repeat: Infinity,
+                      repeatType: "reverse",
+                    }}
+                  >
+                    Visit
+                  </motion.button>
+                </a>
               </div>
-
-              {/* Right side card */}
-              {!isLeft && (
-                <motion.div
-                  initial={{ opacity: 0, x: 80 }}
-                  animate={inView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ delay: 0.2 + index * 0.15, duration: 0.5 }}
-                  className="w-[50%] pl-8 max-sm:w-[100%] max-lg:w-[80%] max-sm:pl-0"
-                >
-                  <div className="bg-[#090717]/80 border border-white/10 backdrop-blur-xl p-5 rounded-2xl shadow-[0_18px_45px_rgba(0,0,0,0.7)] w-full text-left hover:shadow-purple-500/50 hover:-translate-y-1 transition-all duration-300">
-                    <h3 className="text-purple-300 text-sm font-semibold sm:text-xl">
-                      {edu.name}
-                    </h3>
-                    <h2 className="text-gray-300 text-xs sm:text-sm mt-1">
-                      {edu.duration}
-                    </h2>
-                    <p className="text-indigo-300 text-xs sm:text-sm mt-1">
-                      {edu.location}
-                    </p>
-                    <a
-                      href={edu.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <motion.button
-                        className="mt-3 px-4 py-2 rounded-full text-xs sm:text-sm overflow-hidden border border-transparent text-white bg-gradient-to-r from-purple-600 via-fuchsia-600 to-indigo-600 shadow-[0_10px_25px_rgba(0,0,0,0.7)] hover:shadow-purple-500/60 hover:-translate-y-0.5 transition-all duration-300"
-                        initial={{ boxShadow: "0 0 8px #CD1C18" }}
-                        animate={{
-                          boxShadow: ["0 0 8px #CD1C18", "0 0 10px #4B0082"],
-                        }}
-                        transition={{
-                          duration: 1.5,
-                          repeat: Infinity,
-                          repeatType: "reverse",
-                        }}
-                      >
-                        Visit
-                      </motion.button>
-                    </a>
-                  </div>
-                </motion.div>
-              )}
-            </div>
-          );
-        })}
+            </motion.div>
+          ))}
+        </div>
       </div>
     </div>
   );
